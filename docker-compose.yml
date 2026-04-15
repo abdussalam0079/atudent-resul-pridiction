@@ -1,0 +1,51 @@
+# ================================================================
+#  SmartStudentSystem – docker-compose.yml
+#  Q#2(v) – Docker deployment orchestration
+# ================================================================
+
+version: "3.9"
+
+services:
+  smartstudentsystem:
+    # Build from local Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # Container name
+    container_name: smart_student_system
+
+    # Image name and tag
+    image: smartstudentsystem:1.0
+
+    # Always restart unless manually stopped
+    restart: unless-stopped
+
+    # Windows-specific isolation mode (process is lighter than hyperv)
+    isolation: process
+
+    # Environment variables
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+    # Mount a host volume to persist the trained model between runs
+    volumes:
+      - ./output:/app/output
+      - ./Data:/app/Data:ro          # read-only training data
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+        reservations:
+          memory: 256M
+
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
