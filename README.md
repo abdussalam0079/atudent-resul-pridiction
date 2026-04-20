@@ -4,7 +4,6 @@
 CLO-01 / CLO-02 | PLO-02 / PLO-03 | P3 / P4
 
 ---
-
 ## 📋 Project Overview
 
 A complete intelligent, deployable application built in **C# .NET 8** that:
