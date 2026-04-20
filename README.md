@@ -17,7 +17,6 @@ A complete intelligent, deployable application built in **C# .NET 8** that:
 | Containerisation | **Docker** – multi-stage Windows container |
 
 ---
-
 ## 🗂️ Project Structure
 
 ```
